@@ -12,6 +12,7 @@ struct ContentView: View {
     @State var redValue = Double.random(in: 1...255)
     @State var greenValue = Double.random(in: 1...255)
     @State var blueValue = Double.random(in: 1...255)
+    @FocusState var focused: Bool
     
     var body: some View {
         ZStack {
@@ -29,6 +30,17 @@ struct ContentView: View {
                     ColorSliderView(sliderValue: $redValue, color: .red)
                     ColorSliderView(sliderValue: $greenValue, color: .green)
                     ColorSliderView(sliderValue: $blueValue, color: .blue)
+                }
+                .focused($focused)
+                .toolbar {
+                    ToolbarItem(placement: .keyboard) {
+                        HStack {
+                            Spacer()
+                            Button("Done") {
+                                focused = false
+                            }
+                        }
+                    }
                 }
                 
                 Spacer()
@@ -50,7 +62,7 @@ struct ColorSliderView: View {
     
     @Binding var sliderValue: Double
     let color: Color
-    @FocusState var focused: Bool
+    
     
     var body: some View {
         HStack(spacing: 8) {
@@ -59,19 +71,7 @@ struct ColorSliderView: View {
                 .frame(width: 50)
             Slider(value: $sliderValue, in: 1...255, step: 1)
                 .tint(color)
-            TextField("", text: .constant("\(lround(sliderValue))"))
-                .textFieldStyle(.roundedBorder)
-                .frame(width: 50)
-                .multilineTextAlignment(.trailing)
-                .keyboardType(.numberPad)
-                .focused($focused)
-                .toolbar {
-                    ToolbarItem(placement: .keyboard) {
-                        Button("Done") {
-                            focused = false
-                        }
-                    }
-                }
+            TextFieldView(string: "\(lround(sliderValue))")
         }
         
     }
