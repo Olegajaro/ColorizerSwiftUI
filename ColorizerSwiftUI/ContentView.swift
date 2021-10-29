@@ -26,9 +26,9 @@ struct ContentView: View {
                 )
                 
                 VStack {
-                    ColorSliderView(sliderValue: $redValue)
-                    ColorSliderView(sliderValue: $greenValue)
-                    ColorSliderView(sliderValue: $blueValue)
+                    ColorSliderView(sliderValue: $redValue, color: .red)
+                    ColorSliderView(sliderValue: $greenValue, color: .green)
+                    ColorSliderView(sliderValue: $blueValue, color: .blue)
                 }
                 
                 Spacer()
@@ -49,15 +49,30 @@ struct ContentView_Previews: PreviewProvider {
 struct ColorSliderView: View {
     
     @Binding var sliderValue: Double
+    let color: Color
+    @FocusState var focused: Bool
     
     var body: some View {
         HStack(spacing: 8) {
             Text("\(lround(sliderValue))")
+                .multilineTextAlignment(.leading)
                 .frame(width: 50)
             Slider(value: $sliderValue, in: 1...255, step: 1)
+                .tint(color)
             TextField("", text: .constant("\(lround(sliderValue))"))
                 .textFieldStyle(.roundedBorder)
                 .frame(width: 50)
+                .multilineTextAlignment(.trailing)
+                .keyboardType(.numberPad)
+                .focused($focused)
+                .toolbar {
+                    ToolbarItem(placement: .keyboard) {
+                        Button("Done") {
+                            focused = false
+                        }
+                    }
+                }
         }
+        
     }
 }
