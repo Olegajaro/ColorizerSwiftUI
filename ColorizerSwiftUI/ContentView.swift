@@ -9,10 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var redValue = Double.random(in: 1...255)
-    @State var greenValue = Double.random(in: 1...255)
-    @State var blueValue = Double.random(in: 1...255)
+    @State var redValue = 23.0
+    @State var greenValue = 78.0
+    @State var blueValue = 123.0
     @FocusState var focused: Bool
+    @State var redTFValue = 23.0
+    @State var greenTFValue = 78.0
+    @State var blueTFValue = 123.0
     
     var body: some View {
         ZStack {
@@ -27,9 +30,21 @@ struct ContentView: View {
                 )
                 
                 VStack {
-                    ColorSliderView(sliderValue: $redValue, color: .red)
-                    ColorSliderView(sliderValue: $greenValue, color: .green)
-                    ColorSliderView(sliderValue: $blueValue, color: .blue)
+                    ColorSliderView(
+                        sliderValue: $redValue,
+                        textFieldValue: $redTFValue,
+                        color: .red
+                    )
+                    ColorSliderView(
+                        sliderValue: $greenValue,
+                        textFieldValue: $greenTFValue,
+                        color: .green
+                    )
+                    ColorSliderView(
+                        sliderValue: $blueValue,
+                        textFieldValue: $blueTFValue,
+                        color: .blue
+                    )
                 }
                 .focused($focused)
                 .toolbar {
@@ -45,10 +60,10 @@ struct ContentView: View {
                 
                 Spacer()
             }
-            .padding()
-            
+            .padding(
+                EdgeInsets(top: 60, leading: 16, bottom: 16, trailing: 16)
+            )
         }
-        
     }
 }
 
@@ -60,19 +75,29 @@ struct ContentView_Previews: PreviewProvider {
 
 struct ColorSliderView: View {
     
+//    @Binding var textSliderValue: Double
     @Binding var sliderValue: Double
+    @Binding var textFieldValue: Double
     let color: Color
-    
     
     var body: some View {
         HStack(spacing: 8) {
             Text("\(lround(sliderValue))")
-                .multilineTextAlignment(.leading)
                 .frame(width: 50)
-            Slider(value: $sliderValue, in: 1...255, step: 1)
+            Slider(
+                value: $sliderValue,
+                in: 1...255,
+                step: 1
+                )
                 .tint(color)
-            TextFieldView(string: "\(lround(sliderValue))")
+            TextField("", value: $textFieldValue, format: .number)
+                .textFieldStyle(.roundedBorder)
+                .frame(width: 50)
+                .multilineTextAlignment(.trailing)
+                .keyboardType(.numberPad)
         }
-        
     }
 }
+
+//"\(lround(sliderValue))"
+
