@@ -13,9 +13,6 @@ struct ContentView: View {
     @State var greenValue = 78.0
     @State var blueValue = 123.0
     @FocusState var focused: Bool
-    @State var redTFValue = 23.0
-    @State var greenTFValue = 78.0
-    @State var blueTFValue = 123.0
     
     var body: some View {
         ZStack {
@@ -32,30 +29,16 @@ struct ContentView: View {
                 VStack {
                     ColorSliderView(
                         sliderValue: $redValue,
-                        textFieldValue: $redTFValue,
                         color: .red
                     )
                     ColorSliderView(
                         sliderValue: $greenValue,
-                        textFieldValue: $greenTFValue,
                         color: .green
                     )
                     ColorSliderView(
                         sliderValue: $blueValue,
-                        textFieldValue: $blueTFValue,
                         color: .blue
                     )
-                }
-                .focused($focused)
-                .toolbar {
-                    ToolbarItem(placement: .keyboard) {
-                        HStack {
-                            Spacer()
-                            Button("Done") {
-                                focused = false
-                            }
-                        }
-                    }
                 }
                 
                 Spacer()
@@ -63,7 +46,20 @@ struct ContentView: View {
             .padding(
                 EdgeInsets(top: 60, leading: 16, bottom: 16, trailing: 16)
             )
+            .focused($focused)
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        Button("Done", action: doneAction)
+                    }
+                }
+            }
         }
+    }
+    
+    private func doneAction() {
+        focused = false
     }
 }
 
@@ -75,9 +71,7 @@ struct ContentView_Previews: PreviewProvider {
 
 struct ColorSliderView: View {
     
-//    @Binding var textSliderValue: Double
     @Binding var sliderValue: Double
-    @Binding var textFieldValue: Double
     let color: Color
     
     var body: some View {
@@ -90,7 +84,7 @@ struct ColorSliderView: View {
                 step: 1
                 )
                 .tint(color)
-            TextField("", value: $textFieldValue, format: .number)
+            TextField("", value: $sliderValue, format: .number)
                 .textFieldStyle(.roundedBorder)
                 .frame(width: 50)
                 .multilineTextAlignment(.trailing)
@@ -98,6 +92,3 @@ struct ColorSliderView: View {
         }
     }
 }
-
-//"\(lround(sliderValue))"
-
