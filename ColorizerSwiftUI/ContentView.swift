@@ -9,56 +9,68 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var redValue = 23.0
-    @State var greenValue = 78.0
-    @State var blueValue = 123.0
-    @FocusState var focused: Bool
+    @State private var redValue = 23.0
+    @State private var greenValue = 78.0
+    @State private var blueValue = 123.0
+    
+    @State private var redTF = 0.0
+    @State private var greenTF = 0.0
+    @State private var blueTF = 0.0
+    
+    @State private var alertPresented = false
+    
+    @FocusState private var focused: Bool
     
     var body: some View {
         ZStack {
             Color(white: 0.8)
                 .ignoresSafeArea()
             
-            VStack(spacing: 60) {
+            VStack(spacing: 40) {
                 ColorView(
                     redComponent: redValue,
                     greenComponent: greenValue,
                     blueComponent: blueValue
                 )
+                    .padding(.top)
                 
                 VStack {
-                    ColorSliderView(
-                        sliderValue: $redValue,
-                        color: .red
-                    )
-                    ColorSliderView(
-                        sliderValue: $greenValue,
-                        color: .green
-                    )
-                    ColorSliderView(
-                        sliderValue: $blueValue,
-                        color: .blue
-                    )
+                    SliderView(sliderValue: $redValue,
+                               textSV: $redValue,
+                               color: .red)
+                    SliderView(sliderValue: $greenValue,
+                               textSV: $greenValue,
+                               color: .green)
+                    SliderView(sliderValue: $blueValue,
+                               textSV: $blueValue,
+                               color: .blue)
                 }
                 
                 Spacer()
             }
-            .padding(
-                EdgeInsets(top: 60, leading: 16, bottom: 16, trailing: 16)
-            )
             .focused($focused)
             .toolbar {
-                ToolbarItem(placement: .keyboard) {
-                    HStack {
-                        Spacer()
-                        Button("Done", action: doneAction)
-                    }
+                ToolbarItem(id: "",
+                            placement: .keyboard,
+                            showsByDefault: false) {
+                    Button("Done", action: doneAction)
+                        .alert("Wrong Format",
+                               isPresented: $alertPresented,
+                               actions: {})
                 }
             }
         }
     }
     
     private func doneAction() {
+        
+        if redTF < 0 && redTF > 255 {
+            redTF = 1
+            alertPresented = true
+            return
+        }
+        
+        redTF = redValue
         focused = false
     }
 }
@@ -69,26 +81,3 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct ColorSliderView: View {
-    
-    @Binding var sliderValue: Double
-    let color: Color
-    
-    var body: some View {
-        HStack(spacing: 8) {
-            Text("\(lround(sliderValue))")
-                .frame(width: 50)
-            Slider(
-                value: $sliderValue,
-                in: 1...255,
-                step: 1
-                )
-                .tint(color)
-            TextField("", value: $sliderValue, format: .number)
-                .textFieldStyle(.roundedBorder)
-                .frame(width: 50)
-                .multilineTextAlignment(.trailing)
-                .keyboardType(.numberPad)
-        }
-    }
-}
