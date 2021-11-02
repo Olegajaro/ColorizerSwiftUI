@@ -20,7 +20,7 @@ struct ColorView: View {
                       green: greenComponent / 255,
                       blue: blueComponent / 255)
             )
-            .frame(width: 350, height: 150)
+            .frame(height: 150)
             .cornerRadius(20)
             .overlay(
                 RoundedRectangle(cornerRadius: 20)

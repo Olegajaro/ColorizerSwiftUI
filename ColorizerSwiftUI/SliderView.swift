@@ -9,35 +9,34 @@ import SwiftUI
 
 struct SliderView: View {
     @Binding var sliderValue: Double
-    @Binding var textSV: Double
+    @State private var textValue = ""
+    
     let color: Color
     
     var body: some View {
         HStack(spacing: 8) {
-            Text("\(lround(sliderValue))")
-                .frame(width: 45)
+            ValueTextView(value: sliderValue)
                 
-            Slider(
-                value: $sliderValue,
-                in: 1...255,
-                step: 1
-            )
+            Slider(value: $sliderValue, in: 1...255, step: 1)
                 .tint(color)
+                .onChange(of: sliderValue) { isOnFocus in
+                    textValue = "\(lround(isOnFocus))"
+                }
             
-            TextField("", value: $textSV, format: .number)
-                .textFieldStyle(.roundedBorder)
-                .frame(width: 45)
-                .multilineTextAlignment(.trailing)
-                .keyboardType(.numberPad)
+            ValueTextFieldView(textValue: $textValue, value: $sliderValue)
         }
-        .padding()
+        .onAppear {
+            textValue = "\(lround(sliderValue))"
+        }
     }
 }
 
 struct SliderView_Previews: PreviewProvider {
     static var previews: some View {
-        SliderView(sliderValue: .constant(100),
-                   textSV: .constant(100),
-                   color: .blue)
+        ZStack {
+            Color.gray
+            SliderView(sliderValue: .constant(100),
+                       color: .blue)
+        }
     }
 }

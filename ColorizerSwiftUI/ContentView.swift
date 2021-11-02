@@ -9,70 +9,55 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var redValue = 23.0
-    @State private var greenValue = 78.0
-    @State private var blueValue = 123.0
-    
-    @State private var redTF = 0.0
-    @State private var greenTF = 0.0
-    @State private var blueTF = 0.0
-    
-    @State private var alertPresented = false
-    
-    @FocusState private var focused: Bool
+    @State private var redValue = Double.random(in: 0...255)
+    @State private var blueValue = Double.random(in: 0...255)
+    @State private var greenValue = Double.random(in: 0...255)
+
+    @FocusState private var isOnFocus: Bool
     
     var body: some View {
-        ZStack {
-            Color(white: 0.8)
-                .ignoresSafeArea()
-            
-            VStack(spacing: 40) {
-                ColorView(
-                    redComponent: redValue,
-                    greenComponent: greenValue,
-                    blueComponent: blueValue
-                )
-                    .padding(.top)
+//        NavigationView {
+            ZStack {
+                Color(white: 0.6)
+                    .ignoresSafeArea()
                 
-                VStack {
-                    SliderView(sliderValue: $redValue,
-                               textSV: $redValue,
-                               color: .red)
-                    SliderView(sliderValue: $greenValue,
-                               textSV: $greenValue,
-                               color: .green)
-                    SliderView(sliderValue: $blueValue,
-                               textSV: $blueValue,
-                               color: .blue)
+                VStack(spacing: 40) {
+                    ColorView(
+                        redComponent: redValue,
+                        greenComponent: greenValue,
+                        blueComponent: blueValue
+                    )
+                        .padding(.top)
+                    
+                    VStack {
+                        SliderView(sliderValue: $redValue,
+                                   color: .red)
+                        SliderView(sliderValue: $greenValue,
+                                   color: .green)
+                        SliderView(sliderValue: $blueValue,
+                                   color: .blue)
+                    }
+                    .focused($isOnFocus)
+                    .frame(height: 150)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            Button("Done") {
+                                isOnFocus = false
+                            }
+                        }
+                    }
+                    
+                    Spacer()
                 }
-                
-                Spacer()
+                .padding()
             }
-            .focused($focused)
-            .toolbar {
-                ToolbarItem(id: "",
-                            placement: .keyboard,
-                            showsByDefault: false) {
-                    Button("Done", action: doneAction)
-                        .alert("Wrong Format",
-                               isPresented: $alertPresented,
-                               actions: {})
-                }
+            .onTapGesture {
+                isOnFocus = false
             }
         }
-    }
-    
-    private func doneAction() {
         
-        if redTF < 0 && redTF > 255 {
-            redTF = 1
-            alertPresented = true
-            return
-        }
-        
-        redTF = redValue
-        focused = false
-    }
+//    }
 }
 
 struct ContentView_Previews: PreviewProvider {
