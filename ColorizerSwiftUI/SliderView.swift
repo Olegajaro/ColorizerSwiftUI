@@ -16,7 +16,7 @@ struct SliderView: View {
     var body: some View {
         HStack(spacing: 8) {
             ValueTextView(value: sliderValue)
-                
+            
             Slider(value: $sliderValue, in: 1...255, step: 1)
                 .tint(color)
                 .onChange(of: sliderValue) { isOnFocus in
