@@ -14,6 +14,9 @@
 		10109897272C5AF000043A60 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10109896272C5AF000043A60 /* ColorView.swift */; };
 		1018422D27311B25006F9124 /* ValueTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1018422C27311B25006F9124 /* ValueTextView.swift */; };
 		1018422F27311B32006F9124 /* ValueTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1018422E27311B32006F9124 /* ValueTextFieldView.swift */; };
+		10B29E2E27398E4F00C74C02 /* StarterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B29E2D27398E4F00C74C02 /* StarterView.swift */; };
+		10B29E312739902600C74C02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B29E2F2739902600C74C02 /* Main.storyboard */; };
+		10B29E322739902600C74C02 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B29E302739902600C74C02 /* ColorViewController.swift */; };
 		10D09554272F047900B83CA2 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D09553272F047900B83CA2 /* SliderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +29,9 @@
 		10109896272C5AF000043A60 /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
 		1018422C27311B25006F9124 /* ValueTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTextView.swift; sourceTree = "<group>"; };
 		1018422E27311B32006F9124 /* ValueTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueTextFieldView.swift; sourceTree = "<group>"; };
+		10B29E2D27398E4F00C74C02 /* StarterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterView.swift; sourceTree = "<group>"; };
+		10B29E2F2739902600C74C02 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		10B29E302739902600C74C02 /* ColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
 		10D09553272F047900B83CA2 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,11 +66,14 @@
 			isa = PBXGroup;
 			children = (
 				10109888272C5ABF00043A60 /* ColorizerSwiftUIApp.swift */,
+				10B29E2D27398E4F00C74C02 /* StarterView.swift */,
 				1010988A272C5ABF00043A60 /* ContentView.swift */,
 				10109896272C5AF000043A60 /* ColorView.swift */,
 				10D09553272F047900B83CA2 /* SliderView.swift */,
 				1018422C27311B25006F9124 /* ValueTextView.swift */,
 				1018422E27311B32006F9124 /* ValueTextFieldView.swift */,
+				10B29E302739902600C74C02 /* ColorViewController.swift */,
+				10B29E2F2739902600C74C02 /* Main.storyboard */,
 				1010988C272C5ABF00043A60 /* Assets.xcassets */,
 				1010988E272C5ABF00043A60 /* Preview Content */,
 			);
@@ -137,6 +146,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10B29E312739902600C74C02 /* Main.storyboard in Resources */,
 				10109890272C5ABF00043A60 /* Preview Assets.xcassets in Resources */,
 				1010988D272C5ABF00043A60 /* Assets.xcassets in Resources */,
 			);
@@ -149,7 +159,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10B29E2E27398E4F00C74C02 /* StarterView.swift in Sources */,
 				10109897272C5AF000043A60 /* ColorView.swift in Sources */,
+				10B29E322739902600C74C02 /* ColorViewController.swift in Sources */,
 				10D09554272F047900B83CA2 /* SliderView.swift in Sources */,
 				1018422F27311B32006F9124 /* ValueTextFieldView.swift in Sources */,
 				1010988B272C5ABF00043A60 /* ContentView.swift in Sources */,

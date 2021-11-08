@@ -11,7 +11,7 @@ import SwiftUI
 struct ColorizerSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StarterView()
         }
     }
 }
