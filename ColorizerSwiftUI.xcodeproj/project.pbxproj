@@ -17,6 +17,7 @@
 		10B29E2E27398E4F00C74C02 /* StarterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B29E2D27398E4F00C74C02 /* StarterView.swift */; };
 		10B29E312739902600C74C02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10B29E2F2739902600C74C02 /* Main.storyboard */; };
 		10B29E322739902600C74C02 /* ColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B29E302739902600C74C02 /* ColorViewController.swift */; };
+		10B29E362739972F00C74C02 /* DecimalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B29E352739972F00C74C02 /* DecimalTextField.swift */; };
 		10D09554272F047900B83CA2 /* SliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D09553272F047900B83CA2 /* SliderView.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		10B29E2D27398E4F00C74C02 /* StarterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterView.swift; sourceTree = "<group>"; };
 		10B29E2F2739902600C74C02 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		10B29E302739902600C74C02 /* ColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorViewController.swift; sourceTree = "<group>"; };
+		10B29E352739972F00C74C02 /* DecimalTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalTextField.swift; sourceTree = "<group>"; };
 		10D09553272F047900B83CA2 /* SliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 				10D09553272F047900B83CA2 /* SliderView.swift */,
 				1018422C27311B25006F9124 /* ValueTextView.swift */,
 				1018422E27311B32006F9124 /* ValueTextFieldView.swift */,
+				10B29E352739972F00C74C02 /* DecimalTextField.swift */,
 				10B29E302739902600C74C02 /* ColorViewController.swift */,
 				10B29E2F2739902600C74C02 /* Main.storyboard */,
 				1010988C272C5ABF00043A60 /* Assets.xcassets */,
@@ -163,6 +166,7 @@
 				10109897272C5AF000043A60 /* ColorView.swift in Sources */,
 				10B29E322739902600C74C02 /* ColorViewController.swift in Sources */,
 				10D09554272F047900B83CA2 /* SliderView.swift in Sources */,
+				10B29E362739972F00C74C02 /* DecimalTextField.swift in Sources */,
 				1018422F27311B32006F9124 /* ValueTextFieldView.swift in Sources */,
 				1010988B272C5ABF00043A60 /* ContentView.swift in Sources */,
 				10109889272C5ABF00043A60 /* ColorizerSwiftUIApp.swift in Sources */,

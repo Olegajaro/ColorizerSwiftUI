@@ -15,22 +15,22 @@ struct ValueTextFieldView: View {
     @State private var showAlert = false
     
     var body: some View {
-        TextField("", text: $textValue) { _ in
-            withAnimation(.spring()) {
-                checkValue()
+        DecimalTextField(text: $textValue)
+            .frame(width: 60, height: 28, alignment: .trailing)
+            .textFieldStyle(.roundedBorder)
+            .keyboardType(.decimalPad)
+            .onChange(of: textValue) { newValue in
+                withAnimation(.linear) {
+                    check(newValue)
+                }
             }
-        }
-        .frame(width: 50)
-        .multilineTextAlignment(.trailing)
-        .textFieldStyle(.roundedBorder)
-        .keyboardType(.decimalPad)
-        .alert("Wrong Format", isPresented: $showAlert, actions: {}) {
-            Text("Please enter value from 0 to 255")
-        }
+            .alert("Wrong Format", isPresented: $showAlert, actions: {}) {
+                Text("Please enter value from 0 to 255")
+            }
     }
     
-    private func checkValue() {
-        if let value = Int(textValue), (0...255).contains(value) {
+    private func check(_ text: String) {
+        if let value = Int(text), (0...255).contains(value) {
             self.value = Double(value)
             return
         }
